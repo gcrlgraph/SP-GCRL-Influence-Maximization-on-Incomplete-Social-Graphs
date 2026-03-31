@@ -1,0 +1,9 @@
+=== Available dataset identifiers ===
+Identifiers Dataset description
+-----------------------------------
+fb_tvshow /Facebook TV show page network
+soc_epinions /Epinions social trust network
+fb_public /Facebook public figure page network
+soc_advogato /Advogato social network
+petster_hamster /Petster hamster social network 
+fb_politician /Facebook politician page network
