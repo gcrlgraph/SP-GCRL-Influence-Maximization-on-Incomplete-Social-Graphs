@@ -1,5 +1,5 @@
-# SPGCRL
-
+# SP-GCRL: Influence Maximization on Incomplete Social Graphs
+Paper Link：https://link.springer.com/chapter/10.1007/978-981-92-0366-6_21
 **Structure-Preserving Graph Contrastive Reinforcement Learning for Influence Maximization**
 
 ## Overview
