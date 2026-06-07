@@ -93,4 +93,4 @@ python DDQN.py --dataset_name soc_epinions \
 | soc_epinions     | Epinions social trust network        |
 
 
-The first 6 datasets are included in the `data/` directory. 
+ 6 datasets are included in the `data/` directory. 
