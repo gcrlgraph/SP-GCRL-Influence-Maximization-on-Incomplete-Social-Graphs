@@ -91,7 +91,6 @@ python DDQN.py --dataset_name soc_epinions \
 | soc_advogato     | Advogato social network              |
 | fb_public        | Facebook public figure page network  |
 | soc_epinions     | Epinions social trust network        |
-| twitter          | Twitter social network               |
-| weibo            | Weibo social network                 |
 
-The first 6 datasets are included in the `data/` directory. Twitter and Weibo need to be obtained separately — download links will be provided soon.
+
+The first 6 datasets are included in the `data/` directory. 
