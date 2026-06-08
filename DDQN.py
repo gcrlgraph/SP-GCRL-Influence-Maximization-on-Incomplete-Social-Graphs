@@ -14,7 +14,6 @@ import time
 import pandas as pd
 import os
 import numpy as np
-import matplotlib.pyplot as plt
 
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 print(f"Using device: {device}")
@@ -277,7 +276,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Run DDQN with optional test mode and batch experiments")
     # Basic parameters
     parser.add_argument('--train_mc_times', type=int, default=1000, help='MC simulation count during RL training')
-    parser.add_argument('--eval_mc_times', type=int, default=1, help='MC simulation count during final evaluation')
+    parser.add_argument('--eval_mc_times', type=int, default=1000, help='MC simulation count during final evaluation')
     parser.add_argument('--processes_per_gpu', type=int, default=1, help='Number of processes per GPU (default: 4)')
     parser.add_argument('--dataset_name', type=str, default='fb_mich67', help='Name of the dataset to load')
     parser.add_argument('--save_model_path', type=str, default='best_ddqn_model.pth', help='Path to save the best DDQN model')
@@ -291,7 +290,7 @@ if __name__ == "__main__":
     parser.add_argument('--replay_buffer_size', type=int, default=10000)
     parser.add_argument('--omega_val', type=float, default=0.25)
     parser.add_argument('--batch_size', type=int, default=256)
-    parser.add_argument('--num_episodes', type=int, default=2)
+    parser.add_argument('--num_episodes', type=int, default=1000)
     parser.add_argument('--target_update_freq', type=int, default=8)
     parser.add_argument('--use_monte_carlo', action='store_true')    
     parser.add_argument('--epsilon_decay', type=float, default=0.975, help='Epsilon decay factor per episode')
@@ -441,21 +440,6 @@ if __name__ == "__main__":
                     # Record evaluation reward
                     eval_history.append(eval_reward)
 
-                    # REMOVE the plotting code from here (inside episode loop)
-                    # plt.figure(figsize=(10, 6))
-                    plt.plot(rewards_history, label='Training Reward')
-                    plt.xlabel('Episode')
-                    plt.ylabel('Reward')
-                    plt.title(f'Seed Size {seed_size} Experiment {exp_idx+1} Reward Curve')
-                    plt.legend()
-                    plt.grid(True)
-
-                    # Save plot per experiment
-                    plot_path = os.path.join(RESULTS_DIR, f'seed{seed_size}_exp{exp_idx+1}_reward_curve.png')
-                    plt.savefig(plot_path)
-                    plt.close()
-
-                    print(f'Saved reward curve for seed size {seed_size} experiment {exp_idx+1} to: {plot_path}')
 
                     # Clear history for the next experiment
                     rewards_history = []  # clear history for next experiment
@@ -473,20 +457,6 @@ if __name__ == "__main__":
                 print(f"Error initializing or training DDQN Agent: {e}")
                 continue
 
-            # Plotting code should be here, after the episode loop but inside the experiment loop
-            plt.figure(figsize=(10, 6))
-            plt.plot(rewards_history, label='Training Reward')
-            plt.xlabel('Episode')
-            plt.ylabel('Reward')
-            plt.title(f'Seed Size {seed_size} Reward Curve')
-            plt.legend()
-            plt.grid(True)
-
-            plot_path = os.path.join(RESULTS_DIR, f'seed{seed_size}_reward_curve.png')
-            plt.savefig(plot_path)
-            plt.close()
-
-            print(f'Saved reward curve for seed size {seed_size} to: {plot_path}')
 
         # Save model checkpoint
         model_path = os.path.join(RESULTS_DIR, f"ddqn_seed{seed_size}_exp{exp_idx+1}.pth")
