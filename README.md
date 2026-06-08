@@ -1,8 +1,3 @@
-# SP-GCRL: Influence Maximization on Incomplete Social Graphs
-Paper Link: [SP-GCRL: Influence Maximization on Incomplete Social Graphs](https://link.springer.com/chapter/10.1007/978-981-92-0366-6_21)
-<br>
-Arxiv Link: [SP-GCRL: Influence Maximization on Incomplete Social Graphs](https://arxiv.org/abs/2605.12513)
-
 ## Overview
 
 SPGCRL combines graph contrastive learning (GCL) with Double DQN (DDQN) to solve the influence maximization problem on directed social networks. The framework consists of three stages:
